@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Momo Trust Display", "Poppins", sans-serif;
+}
+
+body {
+  background-color: rgb(68.7848101266, 42.3291139241, 35.7151898734);
+  display: flex;
+  height: 100dvh;
+  color: #fff;
+  background-image: url("../../img/background.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body > a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.ccenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgb(85.5696202532, 52.6582278481, 44.4303797468);
+  padding: 50px;
+  border-radius: 1rem;
+  border: 1px solid #b7996d;
+}
+.ccenter h1 {
+  font-size: 7rem;
+  font-weight: 700;
+  text-align: center;
+}
+.ccenter h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+.ccenter h2 span {
+  color: #b7996d;
+}
+.ccenter p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+}
+.ccenter button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #b7996d;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1.25rem;
+  text-align: center;
+}
+.ccenter button:hover {
+  background-color: rgb(199.8440366972, 176.8623853211, 143.1559633028);
+}
+
+@media screen and (max-width: 600px) {
+  .ccenter {
+    width: 95%;
+    padding: 25px;
+  }
+  .ccenter h1 {
+    font-size: 3rem;
+  }
+  .ccenter h2 {
+    font-size: 1.5rem;
+  }
+  .ccenter p {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=errors.css.map */

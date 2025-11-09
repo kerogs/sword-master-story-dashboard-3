@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Momo Trust Display", "Poppins", sans-serif;
+}
+
+body {
+  background: #34201b;
+  color: #fff;
+  background-image: url("../../img/background.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-page {
+  background: rgb(68.7848101266, 42.3291139241, 35.7151898734);
+  /* fond sombre */
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+.login-page .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.login-page .logo img {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 5px;
+}
+.login-page .logo h1 {
+  font-size: 22px;
+  margin: 0;
+  color: #fff;
+}
+.login-page .login-box {
+  background: #34201b;
+  border-top: 3px solid #b7996d;
+  /* orange vif */
+  width: 100%;
+  max-width: 380px;
+  padding: 30px 25px;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+}
+.login-page .login-box h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0 20px;
+}
+.login-page .login-box span.help {
+  color: #fff;
+  font-size: 13px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.login-page .login-box span.help:hover {
+  color: hsl(0, 0%, 110%);
+}
+.login-page .login-box form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.login-page .login-box form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+.login-page .login-box form input[type=text],
+.login-page .login-box form input[type=password] {
+  background: rgb(85.5696202532, 52.6582278481, 44.4303797468);
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.login-page .login-box form .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+.login-page .login-box form .options label {
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+.login-page .login-box form .options .forgot {
+  color: #ff6c36;
+  text-decoration: none;
+  font-size: 13px;
+}
+.login-page .login-box form .options .forgot:hover {
+  text-decoration: underline;
+}
+.login-page .login-box form .btn-signin {
+  background: #b7996d;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 15px;
+}
+.login-page .login-box form .btn-signin:hover {
+  background: #b7996d;
+}
+.login-page .login-box form .try-another {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.login-page .login-box form .try-another:hover {
+  text-decoration: underline;
+}
+.login-page .login-box form .register {
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 20px;
+}
+.login-page .login-box form .register a {
+  color: #b7996d;
+  text-decoration: none;
+}
+.login-page .login-box form .register a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+  .login-page {
+    padding: 0;
+    min-height: 100dvh;
+  }
+  .login-page .login-box {
+    width: 95dvw;
+    max-width: unset;
+    height: calc(90dvh - 80px);
+    overflow: auto;
+  }
+  .login-page .logo img {
+    width: 80dvw;
+    max-width: unset;
+  }
+  .login-page .login-box p.description {
+    text-align: justify;
+  }
+}/*# sourceMappingURL=login.css.map */

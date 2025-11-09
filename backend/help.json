@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Github project",
+        "tag": [
+            "github",
+            "contact",
+            "development"
+        ],
+        "content": "If you found an issue, or you want to help, or see more about SMSDV3, you can find it on Github. <a href=\"https://github.com/kerogs/SMSDV3\" target=\"_blank\">Github</a>"
+    },
+    {
+        "title": "What is SMSDV3?",
+        "tag": [
+            "dashboard",
+            "github",
+            "about"
+        ],
+        "content": "SMSDV3 (or its full name: Sword Master Story Dashboard Version 3) is a site that you can self-host. It allows you to keep track of all your coupons. And it does so in a synchronized way across your devices. Much more is planned for the future. To find out more, take a look at the GitHub project: <a href=\"https://github.com/kerogs/SMSDV3\" target=\"_blank\">GitHub</a>"
+    },
+    {
+        "title": "SMSDV3 affiliated with developers?",
+        "tag": [
+            "dashboard",
+            "github",
+            "license"
+        ],
+        "content":"No, SMSDV3 is not affiliated or related in any way. I created the dashboard solely for my own personal use at first, and then published it for those who might be interested. But we have no connection with the studio or the game developers."
+    }
+]
