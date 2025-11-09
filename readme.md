@@ -36,7 +36,10 @@ The assistant for Sword Master Story players.
    - Create a new database
    - Import the SQL file: `backend/sql/smdv3.sql`
 
-3. **Launch**
+3. **Composer**
+   - Do ``composer i``
+
+4. **Launch**
    - That's it! You can now use the website
    - Recommended: Create an account to access all features
 
