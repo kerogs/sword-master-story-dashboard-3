@@ -15,7 +15,7 @@ The assistant for Sword Master Story players.
 
 ### Upcoming Features
 - **Discord Webhooks Compatibility** (coming soon)
-- **Team Power Tracking** (coming soon)
+- **Team Power Tracking** (coming soon) 
 - **API Service** via FastAPI (coming soon)
 
 ### Known Issues
