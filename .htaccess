@@ -3,7 +3,7 @@ ErrorDocument 403 /403.php
 
 RewriteEngine On
 
-RewriteRule ^help$ help.php
+RewriteRule ^help$ help.php [L,QSA]
 RewriteRule ^help/([a-zA-Z0-9_-]+)$ help.php?q=$1 [L,QSA]
 RewriteRule ^profile/(.*)?(.*)$ profile.php?account=$1&$2 [L,QSA]
 RewriteRule ^auth$ auth.php?mode=login

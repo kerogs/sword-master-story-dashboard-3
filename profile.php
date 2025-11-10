@@ -151,7 +151,7 @@ foreach ($claimedCodes as $code) {
             </div>
             <div class="tt">
                 <div class="ccenter">
-                    <p  class="og"><?= $totalClaimed ?> codes claimed</p>
+                    <p class="og"><?= $totalClaimed ?> codes claimed</p>
                 </div>
             </div>
         </div>
@@ -180,11 +180,13 @@ foreach ($claimedCodes as $code) {
                 },
                 order: [
                     [2, "desc"]
-                ]
+                ],
+                pageLength: 5,
+                lengthMenu: [5, 10, 25, 50, 100, 200, 500],
             });
         </script>
 
-        
+
 
     </main>
 

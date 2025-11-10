@@ -1,6 +1,6 @@
 <?php
 /**
- * @file authSystem.php
+ * @file scrap.php
  * @author kerogs'
  * @version 4.1
  * @date 2023-10-06
@@ -124,12 +124,13 @@ function scrap($pdo, $prefix, $user_agent, $url)
                 $reward_type = "Gold Bar";
             }
 
-            $stmt = $pdo->prepare("INSERT INTO {$prefix}codes (code, type, value, date, description) VALUES (:code, :type, :value, :date, :description)");
+            $stmt = $pdo->prepare("INSERT INTO {$prefix}codes (code, type, value, date, description, added_by) VALUES (:code, :type, :value, :date, :description, :added_by)");
             $stmt->bindValue(":code", $coupon_code);
             $stmt->bindValue(":type", $reward_type);
             $stmt->bindValue(":value", $reward_value);
             $stmt->bindValue(":date", $expiration);
             $stmt->bindValue(":description", $reward_description);
+            $stmt->bindValue(":added_by", "SMSDv3");
             $stmt->execute();
         }
 

@@ -663,6 +663,10 @@ body.sidebar-hidden main {
   color: #ccc;
   font-size: 1rem;
 }
+.profile-edit-header a {
+  color: #b7996d;
+  text-decoration: none;
+}
 
 .current-profile {
   display: flex;
@@ -886,12 +890,40 @@ body.sidebar-hidden main {
 .codesOnlyMode a div {
   flex: 1;
   padding: 30px;
+  position: relative;
+  overflow: hidden;
 }
 .codesOnlyMode a div.ruby {
   background-color: #eb3758;
 }
+.codesOnlyMode a div.ruby .icon {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  rotate: -30deg;
+  transition: all 0.3s ease;
+}
+.codesOnlyMode a div.ruby .icon svg,
+.codesOnlyMode a div.ruby .icon img {
+  width: 80px;
+  height: 80px;
+  fill: #b7996d;
+}
 .codesOnlyMode a div.stamina {
   background-color: #f59e0b;
+}
+.codesOnlyMode a div.stamina .icon {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  rotate: -30deg;
+  transition: all 0.3s ease;
+}
+.codesOnlyMode a div.stamina .icon svg,
+.codesOnlyMode a div.stamina .icon img {
+  width: 80px;
+  height: 80px;
+  fill: #b7996d;
 }
 .codesOnlyMode a div.special {
   background-color: #8450ef;
@@ -902,8 +934,16 @@ body.sidebar-hidden main {
 .codesOnlyMode a div:hover {
   opacity: 0.7;
 }
+.codesOnlyMode a div:hover .icon {
+  transform: scale(1.1) rotate(30deg);
+  right: -20px;
+}
 .codesOnlyMode a div.active {
   opacity: 0.6;
+}
+.codesOnlyMode a div.active .icon {
+  transform: scale(1.1) rotate(30deg);
+  right: -20px;
 }
 
 .stats-claimed {
@@ -1005,7 +1045,19 @@ body.sidebar-hidden main {
 .api-key .api span {
   color: #b7996d;
 }
-.api-key .btn a button {
+.api-key .url {
+  flex: 1;
+}
+.api-key .url input {
+  background-color: #34201b;
+  padding: 20px;
+  border-radius: 4px;
+  border: 1px solid rgb(85.5696202532, 52.6582278481, 44.4303797468);
+  color: #fff;
+  overflow-x: auto;
+  width: 100%;
+}
+.api-key .btn button {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #b7996d;
@@ -1015,6 +1067,46 @@ body.sidebar-hidden main {
   transition: all 0.3s ease;
   height: 100%;
 }
-.api-key .btn a button:hover {
+.api-key .btn button:hover {
   background-color: rgb(85.5696202532, 52.6582278481, 44.4303797468);
+}
+
+.sendWebhook {
+  text-decoration: none;
+}
+.sendWebhook > div {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 4px;
+  border: 1px solid #b7996d;
+  background-color: #34201b;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+}
+.sendWebhook > div:hover {
+  background-color: rgb(85.5696202532, 52.6582278481, 44.4303797468);
+}
+.sendWebhook > div .icon {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  rotate: -30deg;
+  opacity: 0.5;
+}
+.sendWebhook > div .icon svg {
+  width: 80px;
+  height: 80px;
+  fill: #b7996d;
+}
+.sendWebhook > div p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 99%;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

@@ -59,7 +59,7 @@ $pageName = basename($_SERVER['PHP_SELF']);
     </nav>
 
     <div class="footerAside">
-        <p>version 3.1-alpha</p>
+        <p>version <?= smsdv3_version ?></p>
         <p class="c">&copy; 2025 <a href="https://github.com/kerogs" target="_blank">kerogs'</a> & contributors
             &bull; <a href="https://github.com/kerogs/SMSDV3">SMSDV3</a>. Licensed under MIT</p>
     </div>

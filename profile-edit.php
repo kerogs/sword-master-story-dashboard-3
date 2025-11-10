@@ -80,7 +80,7 @@ $characterImages = glob($charactersDir . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE
             <div class="api-key">
                 <div class="api">
                     <?php
-                    
+
                     if ($currentUser['api_key']) {
                         echo '<p>Current API Key: <span>' . $currentUser['api_key'] . '</span></p>';
                     } else {
@@ -95,6 +95,45 @@ $characterImages = glob($charactersDir . '*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE
                     </a>
                 </div>
             </div>
+        </div>
+
+        <div class="profile-edit-container">
+            <div class="profile-edit-header">
+                <h1>Webhook</h1>
+                <p>Add or change your discord webhook, <a href="/help/discord-webhook">See more</a></p>
+            </div>
+
+            <form action="actions/change_webhook.php" method="post">
+
+                <div class="api-key">
+                    <div class="url">
+                        <?php
+                        $json_dataDecode = [];
+
+                        // Vérifie si json_data existe et n'est pas vide
+                        if (!empty($currentUser['json_data'])) {
+                            $json_dataDecode = json_decode($currentUser['json_data'], true);
+                        }
+
+                        // Si le JSON est vide ou invalide, on évite les erreurs plus bas
+                        $webhookUrl = $json_dataDecode['webhook']['url'] ?? '';
+
+                        if ($webhookUrl) {
+                            echo '<input type="text" name="webhookUrl" value="' . htmlspecialchars($webhookUrl) . '"></input>';
+                        } else {
+                            echo '<input type="text" name="webhookUrl" placeholder="https://discord.com/api/webhooks/..."></input>';
+                        }
+                        ?>
+
+                    </div>
+                    <div class="btn">
+                        <button>ADD URL</button>
+                    </div>
+                    <div class="btn">
+                        <button type="button" onclick="window.location.href='/actions/hooks/discord_test.php'">TEST</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </main>
 

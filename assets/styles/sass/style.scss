@@ -844,6 +844,11 @@ body.sidebar-hidden {
         color: #ccc;
         font-size: 1rem;
     }
+
+    a {
+        color: $primary;
+        text-decoration: none;
+    }
 }
 
 .current-profile {
@@ -1129,12 +1134,47 @@ body.sidebar-hidden {
 
             padding: 30px;
 
+            position: relative;
+            overflow: hidden;
+
             &.ruby {
                 background-color: $red;
+
+                .icon {
+                    position: absolute;
+                    bottom: -60px;
+                    right: -40px;
+                    rotate: -30deg;
+                    transition: all 0.3s ease;
+                    // opacity: .5;
+
+                    svg,
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        fill: $primary;
+                    }
+                }
             }
 
             &.stamina {
                 background-color: $yellow;
+
+                .icon {
+                    position: absolute;
+                    bottom: -60px;
+                    right: -40px;
+                    rotate: -30deg;
+                    transition: all 0.3s ease;
+                    // opacity: .5;
+
+                    svg,
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        fill: $primary;
+                    }
+                }
             }
 
             &.special {
@@ -1147,10 +1187,20 @@ body.sidebar-hidden {
 
             &:hover {
                 opacity: .7;
+
+                .icon {
+                    transform: scale(1.1) rotate(30deg);
+                    right: -20px;
+                }
             }
 
             &.active {
                 opacity: .6;
+
+                .icon {
+                    transform: scale(1.1) rotate(30deg);
+                    right: -20px;
+                }
             }
         }
     }
@@ -1283,27 +1333,85 @@ body.sidebar-hidden {
         color: $foreground;
         overflow-x: auto;
 
-        span{
+        span {
             color: $primary;
         }
     }
 
-    .btn {
-        a {
-            button {
-                padding: 10px;
-                border-radius: 4px;
-                border: 1px solid $border;
-                background-color: $background;
-                color: $foreground;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                height: 100%;
+    .url {
+        flex: 1;
 
-                &:hover{
-                    background-color: color.adjust($background, $lightness: 10%);
-                }
+        input {
+            background-color: $background;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid color.adjust($background, $lightness: 10%);
+            color: $foreground;
+            overflow-x: auto;
+            width: 100%;
+        }
+    }
+
+    .btn {
+        button {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid $border;
+            background-color: $background;
+            color: $foreground;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+
+            &:hover {
+                background-color: color.adjust($background, $lightness: 10%);
             }
+        }
+    }
+}
+
+.sendWebhook {
+    text-decoration: none;
+
+    >div {
+        padding: 10px;
+        margin: 20px;
+        border-radius: 4px;
+        border: 1px solid $border;
+        background-color: $background;
+        color: $foreground;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 100px;
+        overflow: hidden;
+
+        position: relative;
+
+        &:hover {
+            background-color: color.adjust($background, $lightness: 10%);
+        }
+
+        .icon {
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            rotate: -30deg;
+            opacity: .5;
+
+            svg {
+                width: 80px;
+                height: 80px;
+                fill: $primary;
+            }
+        }
+
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 99%;
+            text-align: center;
         }
     }
 }
