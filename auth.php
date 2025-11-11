@@ -36,13 +36,14 @@ if ($success && isset($successMessages[$success])) {
 <html lang="en">
 
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMSDV3 | <?php echo $authMode === "login" ? "Log in" : "Sign up"; ?></title>
     <link rel="stylesheet" href="/assets/styles/css/login.css">
-</head>
+</head >
 
-<body class="dark">
+<body >
     <?php if ($_GET['mode'] === "login") { ?>
 
         <div class="login-page">

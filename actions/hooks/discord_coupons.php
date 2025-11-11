@@ -64,7 +64,7 @@ if (empty($coupons)) {
     foreach ($coupons as $coupon) {
         $expiration = date('d/m/Y', strtotime($coupon['date']));
         $value = $coupon['value'] ? "x" . $coupon['value'] : "";
-        $coupon_line = "• {$coupon['code']} - *{$expiration}*";
+        $coupon_line = "• {$coupon['code']}";
 
         if ($coupon['type'] === 'Ruby') {
             $totalValueRuby += $coupon['value'];

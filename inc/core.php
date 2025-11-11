@@ -1,6 +1,6 @@
 <?php
 
-const smsdv3_version = "3.2.1-beta";
+const smsdv3_version = "3.3.1-beta";
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/authSystem.php';

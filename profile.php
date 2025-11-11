@@ -78,6 +78,7 @@ foreach ($claimedCodes as $code) {
 }
 
 
+
 // var_dump($coupons);
 
 ?>
@@ -116,7 +117,7 @@ foreach ($claimedCodes as $code) {
                             <span class="stat-label">Last login</span>
                             <span class="stat-value"><?php echo $userInfo['last_login'] ? date('d/m/Y H:i', strtotime($userInfo['last_login'])) : 'Jamais'; ?></span>
                         </div>
-                        <?php if ($userInfo['id'] === $auth->getCurrentUser()['id']) { ?>
+                        <?php if ($auth->isLoggedIn() && $userInfo['id'] === $auth->getCurrentUser()['id']) { ?>
                             <div class="stat">
                                 <span class="stat-label">Edit your profile</span>
                                 <span class="stat-value"><a href="/profile-edit" class="edit-profile-button">Custom your profile</a></span>

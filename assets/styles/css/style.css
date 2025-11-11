@@ -10,6 +10,10 @@ body {
   background-color: rgb(68.7848101266, 42.3291139241, 35.7151898734);
   display: flex;
   height: 100dvh;
+  background-image: url("../../img/background.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 main {
@@ -23,7 +27,7 @@ main {
   top: 1rem;
   left: 1rem;
   z-index: 1001;
-  background: #38bdf8;
+  background: #b7996d;
   border: none;
   border-radius: 4px;
   padding: 0.5rem;
@@ -48,7 +52,9 @@ main {
 
 aside {
   width: 300px;
-  background-color: #34201b;
+  background: rgba(52, 32, 27, 0.7);
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
   color: #fff;
   display: flex;
   flex-direction: column;

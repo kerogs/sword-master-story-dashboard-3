@@ -12,15 +12,15 @@ The assistant for Sword Master Story players.
 - **Coupon Tracking**: Track used coupons and easily view their status (available, unavailable, etc.)
 - **Comprehensive Statistics**: Detailed statistics and analytics
 - **Custom Error Pages**: Custom 403 and 404 error pages
+- **Discord Webhooks Compatibility**
 
 ### Upcoming Features
-- **Discord Webhooks Compatibility** (coming soon)
 - **Team Power Tracking** (coming soon) 
 - **API Service** via FastAPI (coming soon)
 
 ### Known Issues
 - Occasional logout when editing your profile
-- Minor error message appears when visiting user profiles while not logged in
+- Sometimes the program has trouble retrieving coupons, but it succeeds from time to time.
 
 ## Installation
 

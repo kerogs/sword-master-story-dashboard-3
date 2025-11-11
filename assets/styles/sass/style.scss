@@ -17,7 +17,7 @@
 // $yellowfg: #fff;
 
 
-$background: #34201b;
+$background: #34201bff;
 $foreground: #fff;
 $border: #b7996d;
 $primary: $border;
@@ -46,6 +46,11 @@ body {
     background-color: color.adjust($background, $lightness: 5%);
     display: flex;
     height: 100dvh;
+
+    background-image: url("../../img/background.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 main {
@@ -60,12 +65,12 @@ main {
     top: 1rem;
     left: 1rem;
     z-index: 1001;
-    background: $blue;
+    background: $primary;
     border: none;
     border-radius: 4px;
     padding: 0.5rem;
     cursor: pointer;
-    color: $bluefg;
+    color: $primaryfg;
 
     svg {
         width: 24px;
@@ -87,7 +92,8 @@ main {
 
 aside {
     width: 300px;
-    background-color: $background;
+    background: color.adjust($background, $alpha: -.3);
+    backdrop-filter: blur(50px);
     color: $foreground;
     display: flex;
     flex-direction: column;
