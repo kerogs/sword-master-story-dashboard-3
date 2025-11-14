@@ -13,3 +13,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
 <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+<!-- clipboardjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>

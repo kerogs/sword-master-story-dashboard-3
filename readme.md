@@ -5,6 +5,7 @@ The assistant for Sword Master Story players.
 ## Features
 
 ### Currently Available
+- **docker support**
 - **Automated Coupon Management**: Fetches and stores coupons automatically in the database (runs at regular intervals)
 - **User Accounts**: Create and login to synchronize data across devices
 - **Profile Management**: Edit your profile and set your favorite character
@@ -13,6 +14,7 @@ The assistant for Sword Master Story players.
 - **Comprehensive Statistics**: Detailed statistics and analytics
 - **Custom Error Pages**: Custom 403 and 404 error pages
 - **Discord Webhooks Compatibility**
+- **copy past each code**
 
 ### Upcoming Features
 - **Team Power Tracking** (coming soon) 
@@ -24,6 +26,10 @@ The assistant for Sword Master Story players.
 
 ## Installation
 
+### Docker installtion
+1. **Commands**
+   - run ``docker composer up -d`` and everything is automatic
+
 ### Web Application Setup
 
 1. **Environment Configuration**
@@ -34,7 +40,7 @@ The assistant for Sword Master Story players.
 2. **Database Setup**
    - Connect to your MySQL database
    - Create a new database
-   - Import the SQL file: `backend/sql/smdv3.sql`
+   - Import the SQL file: `docker/sql/smdv3.sql`
 
 3. **Composer**
    - Do ``composer i``
@@ -43,7 +49,7 @@ The assistant for Sword Master Story players.
    - That's it! You can now use the website
    - Recommended: Create an account to access all features
 
-### API Installation
+### API Installation (optionnal)
 - Coming soon
 
 ## Developer Notes

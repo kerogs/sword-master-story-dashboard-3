@@ -28,7 +28,7 @@ class AuthSystem
 
     /**
      * Charge les variables d'environnement à partir du fichier .env
-     * Vérifie que les variables essentielles (KAS_DB_HOST, KAS_DB_NAME, KAS_DB_USER, KAS_DB_PASS, KAS_DB_PREFIX) existent
+     * Vérifie que les variables essentielles (DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PREFIX) existent
      * @throws \Exception si une variable essentielle est manquante
      */
     private function loadEnv()
@@ -37,7 +37,7 @@ class AuthSystem
         $dotenv->load();
 
         // Vérifie que les variables essentielles existent
-        foreach (['KAS_DB_HOST', 'KAS_DB_NAME', 'KAS_DB_USER', 'KAS_DB_PASS', 'KAS_DB_PREFIX'] as $var) {
+        foreach (['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'DB_PREFIX'] as $var) {
             if (!isset($_ENV[$var])) {
                 throw new Exception("Variable d'environnement manquante : $var");
             }
@@ -51,10 +51,10 @@ class AuthSystem
      */
     private function connect()
     {
-        $host   = $_ENV['KAS_DB_HOST'];
-        $db     = $_ENV['KAS_DB_NAME'];
-        $user   = $_ENV['KAS_DB_USER'];
-        $pass   = $_ENV['KAS_DB_PASS'];
+        $host   = $_ENV['DB_HOST'];
+        $db     = $_ENV['DB_NAME'];
+        $user   = $_ENV['DB_USER'];
+        $pass   = $_ENV['DB_PASS'];
 
         try {
             $this->pdo = new PDO(
@@ -78,7 +78,7 @@ class AuthSystem
      */
     private function createTables()
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
 
         // Table des utilisateurs - CORRIGÉE
         $this->pdo->exec("
@@ -144,7 +144,7 @@ class AuthSystem
         try {
             $this->pdo->beginTransaction();
 
-            $prefix = $_ENV['KAS_DB_PREFIX'];
+            $prefix = $_ENV['DB_PREFIX'];
 
             // Vérifie si l'utilisateur existe déjà
             $stmt = $this->pdo->prepare("SELECT id FROM {$prefix}users WHERE username = ? OR email = ?");
@@ -206,7 +206,7 @@ class AuthSystem
         }
 
         try {
-            $prefix = $_ENV['KAS_DB_PREFIX'];
+            $prefix = $_ENV['DB_PREFIX'];
 
             // Récupération des informations de l'utilisateur
             $stmt = $this->pdo->prepare("
@@ -262,7 +262,7 @@ class AuthSystem
         $token = $_COOKIE[$this->cookie_name];
 
         try {
-            $prefix = $_ENV['KAS_DB_PREFIX'];
+            $prefix = $_ENV['DB_PREFIX'];
 
             // Vérification du token en base de données
             $stmt = $this->pdo->prepare("
@@ -312,7 +312,7 @@ class AuthSystem
         $token = $_COOKIE[$this->cookie_name];
 
         try {
-            $prefix = $_ENV['KAS_DB_PREFIX'];
+            $prefix = $_ENV['DB_PREFIX'];
 
             $stmt = $this->pdo->prepare("
                 SELECT * 
@@ -348,7 +348,7 @@ class AuthSystem
      */
     private function createSession($user_id, $remember = false)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $token = bin2hex(random_bytes(32)); // Token sécurisé
         $duration = $remember ? $this->cookie_duration : (24 * 60 * 60); // 30 jours ou 1 jour
         $expires = date('Y-m-d H:i:s', time() + $duration);
@@ -378,7 +378,7 @@ class AuthSystem
     private function deleteSession($token)
     {
         try {
-            $prefix = $_ENV['KAS_DB_PREFIX'];
+            $prefix = $_ENV['DB_PREFIX'];
             $stmt = $this->pdo->prepare("DELETE FROM {$prefix}user_sessions WHERE token = ?");
             $stmt->execute([$token]);
         } catch (PDOException $e) {
@@ -388,7 +388,7 @@ class AuthSystem
 
     private function renewSession($token)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $new_expires = date('Y-m-d H:i:s', time() + $this->cookie_duration);
 
         $stmt = $this->pdo->prepare("
@@ -412,7 +412,7 @@ class AuthSystem
 
     private function isAccountLocked($username)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $stmt = $this->pdo->prepare("
             SELECT locked_until 
             FROM {$prefix}users 
@@ -425,7 +425,7 @@ class AuthSystem
 
     private function logFailedAttempt($username)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $stmt = $this->pdo->prepare("
             UPDATE {$prefix}users 
             SET failed_attempts = failed_attempts + 1,
@@ -441,7 +441,7 @@ class AuthSystem
 
     private function incrementFailedAttempts($user_id)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $stmt = $this->pdo->prepare("
             UPDATE {$prefix}users 
             SET failed_attempts = failed_attempts + 1,
@@ -457,7 +457,7 @@ class AuthSystem
 
     private function resetFailedAttempts($user_id)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $stmt = $this->pdo->prepare("
             UPDATE {$prefix}users 
             SET failed_attempts = 0, locked_until = NULL 
@@ -469,7 +469,7 @@ class AuthSystem
 
     private function updateLastLogin($user_id)
     {
-        $prefix = $_ENV['KAS_DB_PREFIX'];
+        $prefix = $_ENV['DB_PREFIX'];
         $stmt = $this->pdo->prepare("
             UPDATE {$prefix}users 
             SET last_login = NOW() 

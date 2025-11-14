@@ -119,7 +119,7 @@ $description = "
 ```
 ";
 
-$img = 'https://raw.githubusercontent.com/kerogs/sword-master-story-dashboard-3/refs/heads/main/assets/img/banner/mia2.jpg';
+$img = 'https://raw.githubusercontent.com/kerogs/sword-master-story-dashboard-3/refs/heads/main/assets/img/banner/mia2.png';
 
 $msg = [
     "avatar_url" => "https://raw.githubusercontent.com/kerogs/sword-master-story-dashboard-3/refs/heads/main/assets/img/favicon.png",
@@ -162,5 +162,12 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($msg));
 $response = curl_exec($ch);
 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
+
+// check if ok or ko
+if ($http_code !== 200) {
+    NotyfManager::add("Webhook notification failed", "error");
+} else {
+    NotyfManager::add("Webhook notification sent successfully", "success");
+}
 
 header('Location: /coupons');

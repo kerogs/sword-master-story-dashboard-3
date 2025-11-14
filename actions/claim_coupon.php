@@ -4,8 +4,8 @@ require_once __DIR__ . '/../inc/core.php';
 header('Content-Type: application/json');
 
 if (!$auth->isLoggedIn()) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Non connecté']);
+    // http_response_code(401);
+    echo json_encode(['success' => false, 'message' => 'You are not logged in']);
     exit;
 }
 
@@ -14,7 +14,7 @@ $code = $input['code'] ?? '';
 
 if (empty($code)) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Code manquant']);
+    echo json_encode(['success' => false, 'message' => 'No code provided', 'code' => $code]);
     exit;
 }
 
@@ -55,6 +55,6 @@ try {
     echo json_encode(['success' => true, 'message' => 'Code claimed']);
 } catch (PDOException $e) {
     error_log("Database error in claim_coupon.php: " . $e->getMessage());
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database error']);
+    // http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Database error,' . $e->getMessage()]);
 }

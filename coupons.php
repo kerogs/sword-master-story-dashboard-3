@@ -170,7 +170,7 @@ if ($loggedIn) {
                         }
 
                         ?>
-                        <tr class="<?= $coupon['status'] ?>">
+                        <tr data-clipboard-text="<?= $coupon['code'] ?>" class=" <?= $coupon['status'] ?>">
                             <td><?= $coupon['priority']  ?? '' ?></td>
                             <td><?= htmlspecialchars($coupon['code'])  ?? '' ?></td>
                             <td class="<?= strtolower($coupon['type']) ?>"><?= htmlspecialchars($coupon['type'])  ?? '' ?></td>
@@ -204,6 +204,50 @@ if ($loggedIn) {
 <?php require_once __DIR__ . '/inc/scripts.php'; ?>
 
 <script>
+    // Initialiser Clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+        const clipboard = new ClipboardJS('tr[data-clipboard-text]', {
+            text: function(trigger) {
+                return trigger.getAttribute('data-clipboard-text');
+            }
+        });
+
+        // Gérer le succès du copiage
+        clipboard.on('success', function(e) {
+            console.log('Code copié:', e.text);
+            showCopyNotification();
+            e.clearSelection();
+        });
+
+        // Gérer les erreurs
+        clipboard.on('error', function(e) {
+            console.error('Erreur lors de la copie:', e.action);
+            alert('Erreur lors de la copie du code');
+        });
+
+        // Fonction pour afficher la notification
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        // Ajouter un effet visuel au clic
+        document.querySelectorAll('tr[data-clipboard-text]').forEach(row => {
+            row.addEventListener('click', function() {
+                this.style.color = '#d4edda';
+                setTimeout(() => {
+                    this.style.color = '';
+                },500);
+            });
+        });
+    });
+</script>
+
+<script>
     const notyf = new Notyf({
         duration: 2500,
         position: {
@@ -225,7 +269,7 @@ if ($loggedIn) {
         }
 
         try {
-            const res = await axios.post('./actions/claim_coupon.php', {
+            const res = await axios.post('actions/claim_coupon.php', {
                 code
             });
 

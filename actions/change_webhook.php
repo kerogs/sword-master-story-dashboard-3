@@ -33,11 +33,11 @@ if (isset($_POST['webhookUrl'])) {
 
 $json_dataDecode = json_encode($json_dataDecode);
 
-$prefix = $_ENV['KAS_DB_PREFIX'];
-$host   = $_ENV['KAS_DB_HOST'];
-$db     = $_ENV['KAS_DB_NAME'];
-$user   = $_ENV['KAS_DB_USER'];
-$pass   = $_ENV['KAS_DB_PASS'];
+$prefix = $_ENV['DB_PREFIX'];
+$host   = $_ENV['DB_HOST'];
+$db     = $_ENV['DB_NAME'];
+$user   = $_ENV['DB_USER'];
+$pass   = $_ENV['DB_PASS'];
 
 try {
     $kas = new PDO("mysql:host=$host;dbname=$db", $user, $pass);

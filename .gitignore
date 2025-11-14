@@ -1,3 +1,5 @@
 .env
 vendor/*
 tt.php
+prepare-commit-message.txt
+api/test.php
