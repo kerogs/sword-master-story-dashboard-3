@@ -733,6 +733,7 @@ body.sidebar-hidden {
         border-radius: 50%;
         overflow: hidden;
         border: 3px solid $border;
+        flex-shrink: 0;
 
         img {
             width: 100%;
@@ -754,6 +755,11 @@ body.sidebar-hidden {
     .profile-stats {
         display: flex;
         gap: 2rem;
+
+        @media screen and (max-width: 1050px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
     }
 
     .stat {
@@ -1418,6 +1424,50 @@ body.sidebar-hidden {
             transform: translate(-50%, -50%);
             width: 99%;
             text-align: center;
+        }
+    }
+}
+
+.users-list-container{
+    margin: 20px;
+
+    .list{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        a{
+            text-decoration: none;
+        }
+
+        .user{
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+
+            border: 1px solid $border;
+            background-color: $background;
+            border-radius: 20px;
+            align-items: center;
+            color: $foreground;
+
+            img{
+                flex-shrink: 0;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                border: 1px solid $border;
+                background-color: $background;
+            }
+
+            p{
+                flex: 1;
+                font-size: 20px;
+            }
+
+            &:hover{
+                background-color: color.adjust($background, $lightness: 10%);
+            }
         }
     }
 }

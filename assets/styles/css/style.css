@@ -575,6 +575,7 @@ body.sidebar-hidden main {
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #b7996d;
+  flex-shrink: 0;
 }
 .profile-container .profile-picture img {
   width: 100%;
@@ -593,6 +594,12 @@ body.sidebar-hidden main {
 .profile-container .profile-stats {
   display: flex;
   gap: 2rem;
+}
+@media screen and (max-width: 1050px) {
+  .profile-container .profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 .profile-container .stat {
   display: flex;
@@ -1115,4 +1122,41 @@ body.sidebar-hidden main {
   transform: translate(-50%, -50%);
   width: 99%;
   text-align: center;
+}
+
+.users-list-container {
+  margin: 20px;
+}
+.users-list-container .list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.users-list-container .list a {
+  text-decoration: none;
+}
+.users-list-container .list .user {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  border: 1px solid #b7996d;
+  background-color: #34201b;
+  border-radius: 20px;
+  align-items: center;
+  color: #fff;
+}
+.users-list-container .list .user img {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid #b7996d;
+  background-color: #34201b;
+}
+.users-list-container .list .user p {
+  flex: 1;
+  font-size: 20px;
+}
+.users-list-container .list .user:hover {
+  background-color: rgb(85.5696202532, 52.6582278481, 44.4303797468);
 }/*# sourceMappingURL=style.css.map */

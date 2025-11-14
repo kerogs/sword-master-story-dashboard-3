@@ -3,3 +3,5 @@ vendor/*
 tt.php
 prepare-commit-message.txt
 api/test.php
+api/__pycache__
+api/.venv/

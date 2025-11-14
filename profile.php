@@ -115,7 +115,7 @@ foreach ($claimedCodes as $code) {
                         </div>
                         <div class="stat">
                             <span class="stat-label">Last login</span>
-                            <span class="stat-value"><?php echo $userInfo['last_login'] ? date('d/m/Y H:i', strtotime($userInfo['last_login'])) : 'Jamais'; ?></span>
+                            <span class="stat-value"><?php echo $userInfo['last_login'] ? date('d/m/Y H:i', strtotime($userInfo['last_login'])) : 'Never :('; ?></span>
                         </div>
                         <?php if ($auth->isLoggedIn() && $userInfo['id'] === $auth->getCurrentUser()['id']) { ?>
                             <div class="stat">
@@ -132,47 +132,50 @@ foreach ($claimedCodes as $code) {
             </div>
         </div>
 
-        <div class="stats-claimed">
-            <div class="r1">
-                <div class="ccenter">
-                    <p class="main"><?= $totalRubyCount ?> Ruby code claimed</p>
-                    <p class="details">for <?= $totalRubyValue ?> total of Ruby</p>
+        <!-- check if there codes  -->
+        <?php if (!empty($coupons)) { ?>
+            <div class="stats-claimed">
+                <div class="r1">
+                    <div class="ccenter">
+                        <p class="main"><?= $totalRubyCount ?> Ruby code claimed</p>
+                        <p class="details">for <?= $totalRubyValue ?> total of Ruby</p>
+                    </div>
+                </div>
+                <div class="st1">
+                    <div class="ccenter">
+                        <p class="main"><?= $totalStaminaCount ?> Stamina code</p>
+                        <p class="details">for <?= $totalStaminaValue ?> total of Stamina</p>
+                    </div>
+                </div>
+                <div class="st2">
+                    <div class="ccenter">
+                        <p class="main"><?= $totalOtherCount ?> Spécials codes claimed</p>
+                    </div>
+                </div>
+                <div class="tt">
+                    <div class="ccenter">
+                        <p class="og"><?= $totalClaimed ?> codes claimed</p>
+                    </div>
                 </div>
             </div>
-            <div class="st1">
-                <div class="ccenter">
-                    <p class="main"><?= $totalStaminaCount ?> Stamina code</p>
-                    <p class="details">for <?= $totalStaminaValue ?> total of Stamina</p>
-                </div>
-            </div>
-            <div class="st2">
-                <div class="ccenter">
-                    <p class="main"><?= $totalOtherCount ?> Spécials codes claimed</p>
-                </div>
-            </div>
-            <div class="tt">
-                <div class="ccenter">
-                    <p class="og"><?= $totalClaimed ?> codes claimed</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="codes-container">
-            <table id="codes">
-                <thead>
-                    <th>Claimed Code</th>
-                    <th>Claimed at</th>
-                </thead>
-                <tbody>
-                    <?php foreach ($coupons as $coupon) { ?>
-                        <tr>
-                            <td style="text-align:left;"><?= htmlspecialchars($coupon['coupon_code'])  ?? '' ?></td>
-                            <td><?= htmlspecialchars($coupon['claimed_at'])  ?? '' ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
+            <div class="codes-container">
+                <table id="codes">
+                    <thead>
+                        <th>Claimed Code</th>
+                        <th>Claimed at</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($coupons as $coupon) { ?>
+                            <tr>
+                                <td style="text-align:left;"><?= htmlspecialchars($coupon['coupon_code'])  ?? '' ?></td>
+                                <td><?= htmlspecialchars($coupon['claimed_at'])  ?? '' ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
 
         <script>
             let table = new DataTable('#codes', {

@@ -12,6 +12,7 @@ RewriteRule ^auth/register(.*)$ auth.php?$1&mode=register [L,QSA]
 RewriteRule ^profile-edit()$ profile-edit.php [L,QSA]
 RewriteRule ^coupons$ coupons.php [L,QSA]
 RewriteRule ^logout$ logout.php [L,QSA]
+RewriteRule ^profiles-list$ profiles-list.php [L,QSA]
 
 # 403
 Options -Indexes

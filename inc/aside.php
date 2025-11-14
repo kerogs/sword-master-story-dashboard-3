@@ -39,14 +39,17 @@ $pageName = basename($_SERVER['PHP_SELF']);
                 <a href="/profile/<?= $auth->getCurrentUser()['username']; ?>">
                     <li>Profile</li>
                 </a>
-                <a href="profile-edit">
+                <a href="/profile-edit">
                     <li>Settings</li>
                 </a>
             <?php } else { ?>
-                <a href="/auth" class="login" >
+                <a href="/auth" class="login">
                     <li>Login</li>
                 </a>
             <?php } ?>
+            <a class="<?= $pageName == 'profiles-list.php' ? 'active' : '' ?>" href="/profiles-list">
+                <li>Profiles list</li>
+            </a>
             <a class="<?= $pageName == 'help.php' ? 'active' : '' ?>" href="/help">
                 <li>Help</li>
             </a>
