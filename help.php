@@ -42,10 +42,27 @@ require_once __DIR__ . '/inc/core.php';
                     <div class="help-header">
                         <h1>Help Center</h1>
                         <p>Find answers to your questions and get the most out of SMSDV3</p>
+                        <p>Tip: use search + category filters to quickly find what you need.</p>
                     </div>
 
                     <div class="help-search">
                         <input type="text" id="helpSearch" class="search-input" placeholder="Search for help...">
+                    </div>
+
+                    <?php
+                    $allTags = [];
+                    foreach ($helpData as $helpItem) {
+                        foreach ($helpItem['tag'] as $tag) {
+                            $allTags[$tag] = true;
+                        }
+                    }
+                    ksort($allTags);
+                    ?>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <?php foreach (array_keys($allTags) as $tag): ?>
+                            <button class="filter-btn" data-filter="<?php echo htmlspecialchars($tag); ?>"><?php echo htmlspecialchars($tag); ?></button>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="help-items" id="helpList">

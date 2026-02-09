@@ -1159,4 +1159,68 @@ body.sidebar-hidden main {
 }
 .users-list-container .list .user:hover {
   background-color: rgb(85.5696202532, 52.6582278481, 44.4303797468);
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */.dashboard-page {
+  padding: 20px;
+}
+.dashboard-page .dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.dashboard-page .dashboard-card,
+.dashboard-page .dashboard-panel {
+  background: rgb(52, 32, 27);
+  border: 1px solid rgb(90.425, 60.625, 51.375);
+  border-radius: 10px;
+  padding: 16px;
+  color: #fff;
+}
+.dashboard-page .metric {
+  font-size: 2rem;
+  color: #b7996d;
+}
+.dashboard-page .dashboard-panels {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+.dashboard-page .dashboard-panels ul {
+  padding-left: 20px;
+}
+
+.add-coupon-section {
+  margin: 20px;
+  background: rgb(52, 32, 27);
+  padding: 16px;
+  border: 1px solid rgb(90.425, 60.625, 51.375);
+  border-radius: 8px;
+}
+.add-coupon-section .add-coupon-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+.add-coupon-section .add-coupon-form input,
+.add-coupon-section .add-coupon-form select,
+.add-coupon-section .add-coupon-form button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(109.85, 77.65, 67.75);
+  background: rgb(63.37, 38.73, 32.67);
+  color: #fff;
+}
+.add-coupon-section .add-coupon-form button {
+  background: #b7996d;
+  color: #fff;
+  cursor: pointer;
+}
+.add-coupon-section .form-message {
+  margin: 8px 0;
+}
+.add-coupon-section .form-message.error {
+  color: #eb3758;
+}
+.add-coupon-section .form-message.success {
+  color: #22c55e;
+}
