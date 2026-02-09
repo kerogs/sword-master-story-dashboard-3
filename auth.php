@@ -1,35 +1,37 @@
 <?php
-$authMode = htmlspecialchars($_GET['mode']);
-
 require_once __DIR__ . '/inc/core.php';
+
+$mode = $_GET['mode'] ?? 'login';
+if (!in_array($mode, ['login', 'register'], true)) {
+    header('Location: /auth/login?error=invalid_auth_mode');
+    exit;
+}
 
 $error = $_GET['error'] ?? '';
 $success = $_GET['success'] ?? '';
+$prefilledUsername = trim($_GET['username'] ?? '');
 
 $errorMessages = [
-    'empty_fields' => 'Please fill in all the fields',
-    'username_too_short' => 'Username must be at least 3 characters long',
-    'password_too_short' => 'Password must be at least 8 characters long',
-    'system_error' => 'Error on the server, please try again later',
-    'account_created' => 'Account created successfully ! You can now log in',
+    'empty_fields' => 'Please fill in all the fields.',
+    'username_too_short' => 'Username must be at least 3 characters long.',
+    'password_too_short' => 'Password must be at least 8 characters long.',
+    'invalid_credentials' => 'Invalid username or password.',
+    'account_locked' => 'Account temporarily locked. Try again later.',
+    'account_disabled' => 'This account is disabled.',
+    'register_failed' => 'Unable to create account with these credentials.',
+    'login_failed' => 'Login failed. Please try again.',
+    'invalid_method' => 'Invalid request method.',
+    'invalid_auth_mode' => 'Unknown auth page requested.',
+    'login_required' => 'Please log in first.',
+    'system_error' => 'Server error, please try again later.',
 ];
 
 $successMessages = [
-    'account_created' => 'Account created successfully ! You can now log in',
+    'account_created' => 'Account created successfully! You can now log in.',
 ];
 
-$displayError = '';
-$displaySuccess = '';
-
-if ($error && isset($errorMessages[$error])) {
-    $displayError = $errorMessages[$error];
-} elseif ($error) {
-    $displayError = htmlspecialchars($error);
-}
-
-if ($success && isset($successMessages[$success])) {
-    $displaySuccess = $successMessages[$success];
-}
+$displayError = $error && isset($errorMessages[$error]) ? $errorMessages[$error] : ($error ? htmlspecialchars($error) : '');
+$displaySuccess = $success && isset($successMessages[$success]) ? $successMessages[$success] : '';
 ?>
 
 <!DOCTYPE html>
@@ -39,33 +41,31 @@ if ($success && isset($successMessages[$success])) {
     <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMSDV3 | <?php echo $authMode === "login" ? "Log in" : "Sign up"; ?></title>
+    <title>SMSDV3 | <?php echo $mode === 'login' ? 'Log in' : 'Sign up'; ?></title>
     <link rel="stylesheet" href="/assets/styles/css/login.css">
-</head >
+</head>
 
-<body >
-    <?php if ($_GET['mode'] === "login") { ?>
+<body>
+    <div class="login-page">
+        <div class="login-box">
+            <h2><?php echo $mode === 'login' ? 'Log in' : 'Register'; ?></h2>
 
-        <div class="login-page">
-            <div class="login-box">
+            <?php if ($displayError) { ?>
+                <div class="error-message" style="color: #ff4444; background: #ff444420; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #ff4444;">
+                    <?php echo $displayError; ?>
+                </div>
+            <?php } ?>
 
-                <h2>Log in</h2>
+            <?php if ($displaySuccess) { ?>
+                <div class="success-message" style="color: #00C851; background: #00C85120; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #00C851;">
+                    <?php echo $displaySuccess; ?>
+                </div>
+            <?php } ?>
 
-                <?php if ($displayError) { ?>
-                    <div class="error-message" style="color: #ff4444; background: #ff444420; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #ff4444;">
-                        <?php echo $displayError; ?>
-                    </div>
-                <?php } ?>
-
-                <?php if ($displaySuccess) { ?>
-                    <div class="success-message" style="color: #00C851; background: #00C85120; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #00C851;">
-                        <?php echo $displaySuccess; ?>
-                    </div>
-                <?php } ?>
-
+            <?php if ($mode === 'login') { ?>
                 <form action="/actions/login_form.php" method="POST">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($prefilledUsername); ?>" required>
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
@@ -76,25 +76,10 @@ if ($success && isset($successMessages[$success])) {
                         New user? <a href="/auth/register">Register</a>
                     </div>
                 </form>
-            </div>
-        </div>
-
-    <?php } else { ?>
-        <div class="login-page">
-            <div class="login-box">
-
-                <h2>Register</h2>
-                
-                <!-- Affichage des messages -->
-                <?php if ($displayError): ?>
-                    <div class="error-message" style="color: #ff4444; background: #ffebee; padding: 10px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #ffcdd2;">
-                        <?php echo $displayError; ?>
-                    </div>
-                <?php endif; ?>
-
+            <?php } else { ?>
                 <form method="POST" action="/actions/register_form.php">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
+                    <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($prefilledUsername); ?>" required>
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
@@ -105,10 +90,9 @@ if ($success && isset($successMessages[$success])) {
                         Already have an account? <a href="/auth/login">Login</a>
                     </div>
                 </form>
-            </div>
+            <?php } ?>
         </div>
-    <?php } ?>
-
+    </div>
 </body>
 
 </html>

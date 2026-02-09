@@ -1,37 +1,42 @@
 <?php
 require_once __DIR__ . '/../inc/core.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupération des données
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: /auth/login?error=invalid_method');
+    exit;
+}
 
-    // Validation basique
-    if (empty($username) || empty($password)) {
-        header('Location: /auth/login?error=empty_fields');
+$username = trim($_POST['username'] ?? '');
+$password = $_POST['password'] ?? '';
+
+if ($username === '' || $password === '') {
+    header('Location: /auth/login?error=empty_fields&username=' . urlencode($username));
+    exit;
+}
+
+try {
+    $result = $auth->login($username, $password, true);
+
+    if (!empty($result['success'])) {
+        header('Location: /');
         exit;
     }
 
-    try {
-        // Tentative de connexion
-        $result = $auth->login($username, $password, true);
+    $message = strtolower($result['message'] ?? '');
+    $errorCode = 'login_failed';
 
-        if ($result['success']) {
-            // Connexion réussie - redirection vers la page d'accueil
-            header('Location: /');
-            exit;
-        } else {
-            // Redirection avec message d'erreur
-            header('Location: /auth/login?error=' . urlencode($result['message']));
-            exit;
-        }
-    } catch (Exception $e) {
-        error_log('Erreur connexion: ' . $e->getMessage());
-        header('Location: /auth/login?error=system_error');
-        exit;
+    if (str_contains($message, 'incorrect') || str_contains($message, 'identifi')) {
+        $errorCode = 'invalid_credentials';
+    } elseif (str_contains($message, 'verrou') || str_contains($message, 'locked')) {
+        $errorCode = 'account_locked';
+    } elseif (str_contains($message, 'désactiv') || str_contains($message, 'disabled')) {
+        $errorCode = 'account_disabled';
     }
-} else {
-    // Si pas en POST, redirection vers la page de connexion
-    header('Location: /auth/login');
+
+    header('Location: /auth/login?error=' . $errorCode . '&username=' . urlencode($username));
+    exit;
+} catch (Throwable $e) {
+    error_log('Login error: ' . $e->getMessage());
+    header('Location: /auth/login?error=system_error&username=' . urlencode($username));
     exit;
 }

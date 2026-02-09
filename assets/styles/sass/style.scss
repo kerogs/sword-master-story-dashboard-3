@@ -1471,3 +1471,69 @@ body.sidebar-hidden {
         }
     }
 }
+.dashboard-page {
+  padding: 20px;
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .dashboard-card,
+  .dashboard-panel {
+    background: $background;
+    border: 1px solid color.adjust($background, $lightness: 12%);
+    border-radius: 10px;
+    padding: 16px;
+    color: $foreground;
+  }
+
+  .metric {
+    font-size: 2rem;
+    color: $primary;
+  }
+
+  .dashboard-panels {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+
+    ul { padding-left: 20px; }
+  }
+}
+
+.add-coupon-section {
+  margin: 20px;
+  background: $background;
+  padding: 16px;
+  border: 1px solid color.adjust($background, $lightness: 12%);
+  border-radius: 8px;
+
+  .add-coupon-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+
+    input, select, button {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid color.adjust($background, $lightness: 20%);
+      background: color.adjust($background, $lightness: 4%);
+      color: $foreground;
+    }
+
+    button {
+      background: $primary;
+      color: $primaryfg;
+      cursor: pointer;
+    }
+  }
+
+  .form-message {
+    margin: 8px 0;
+    &.error { color: $red; }
+    &.success { color: $green; }
+  }
+}
