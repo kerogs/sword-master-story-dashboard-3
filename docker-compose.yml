@@ -8,7 +8,7 @@ services:
       - "8000:80"
     volumes:
       - ./:/var/www/html
-      - "./docker/php/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+      - "./.docker/php/000-default.conf:/etc/apache2/sites-available/000-default.conf"
     depends_on:
       - db
     command: bash -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"

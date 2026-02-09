@@ -3,7 +3,7 @@
 /**
  * @file authSystem.php
  * @author kerogs'
- * @version 3.0
+ * @version 4.0
  * @date 2025-11-06
  * @update 2025-11-08
  * 
